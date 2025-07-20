@@ -1,4 +1,5 @@
 import Table from "rc-table";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
@@ -34,7 +35,13 @@ const data = [
 
 // TODO
 const RCTable = () => {
-  return <Table columns={columns} data={data} />;
+  return (
+    <div className="">
+      <Link to={"/tanstack-table"}>Tanstack table</Link>
+
+      <Table columns={columns} data={data} />
+    </div>
+  );
 };
 
 export default RCTable;

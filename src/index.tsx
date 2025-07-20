@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<TanstackTable />} />
         <Route path="/tanstack-table" element={<TanstackTable />} />
         <Route path="/rc-table" element={<RCTable />} />
       </Routes>

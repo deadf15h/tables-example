@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-table";
 import "./tanstack-table.component.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const data = [
   { firstName: "John", age: 40, secondName: "Doe" },
@@ -58,61 +59,65 @@ const TanstackTable = () => {
   };
 
   return (
-    <div className="table-container">
-      <table>
-        {/* Header render */}
+    <div className="">
+      <Link to={"/rc-table"}>RC table</Link>
 
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr
-              key={headerGroup.id}
-              onClick={() => setSorting([{ id: "age", desc: false }])}
-            >
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  colSpan={header.colSpan}
-                  style={{ width: header.getSize() }}
-                >
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
+      <div className="table-container">
+        <table>
+          {/* Header render */}
 
-                  {/* Resize-handle */}
-                  <div
-                    onMouseDown={header.getResizeHandler()}
-                    onTouchStart={header.getResizeHandler()}
-                    className={`resizer ${
-                      header.column.getIsResizing() ? "isResizing" : ""
-                    }`}
-                  />
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr
+                key={headerGroup.id}
+                onClick={() => setSorting([{ id: "age", desc: false }])}
+              >
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    style={{ width: header.getSize() }}
+                  >
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
 
-        {/* Body render */}
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} style={{ width: cell.column.getSize() }}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                    {/* Resize-handle */}
+                    <div
+                      onMouseDown={header.getResizeHandler()}
+                      onTouchStart={header.getResizeHandler()}
+                      className={`resizer ${
+                        header.column.getIsResizing() ? "isResizing" : ""
+                      }`}
+                    />
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
 
-      <div className="" onClick={setSortAgeAsc}>
-        sort age asc
-      </div>
+          {/* Body render */}
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} style={{ width: cell.column.getSize() }}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      <div className="" onClick={setSortAgeDesc}>
-        sort age desc
+        <div className="" onClick={setSortAgeAsc}>
+          sort age asc
+        </div>
+
+        <div className="" onClick={setSortAgeDesc}>
+          sort age desc
+        </div>
       </div>
     </div>
   );
