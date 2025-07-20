@@ -2,8 +2,10 @@ import {
   useReactTable,
   getCoreRowModel,
   flexRender,
+  getSortedRowModel,
 } from "@tanstack/react-table";
-import "./table.component.css";
+import "./tanstack-table.component.css";
+import { useState } from "react";
 
 const data = [
   { firstName: "John", age: 40, secondName: "Doe" },
@@ -26,18 +28,34 @@ const columns = [
   },
 ];
 
-const Table = () => {
+const TanstackTable = () => {
+  const [sorting, setSorting] = useState<{ id: string; desc: boolean }[]>([]);
+
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
     columnResizeMode: "onChange",
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
   });
 
-  console.log("table:", table);
-  console.log("table.getAllColumns: ", table.getAllColumns());
-  console.log("table.getHeaderGroups: ", table.getHeaderGroups());
-  console.log("table.getRowModel()", table.getRowModel());
+  // console.log("table:", table);
+  // console.log("table.getAllColumns: ", table.getAllColumns());
+  // console.log("table.getHeaderGroups: ", table.getHeaderGroups());
+  // console.log("table.getRowModel()", table.getRowModel());
+  // console.log("sorting: ", table.getState().sorting);
+
+  const setSortAgeDesc = () => {
+    setSorting([{ id: "age", desc: true }]);
+  };
+
+  const setSortAgeAsc = () => {
+    setSorting([{ id: "age", desc: false }]);
+  };
 
   return (
     <div className="table-container">
@@ -46,7 +64,10 @@ const Table = () => {
 
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <tr
+              key={headerGroup.id}
+              onClick={() => setSorting([{ id: "age", desc: false }])}
+            >
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
@@ -85,8 +106,16 @@ const Table = () => {
           ))}
         </tbody>
       </table>
+
+      <div className="" onClick={setSortAgeAsc}>
+        sort age asc
+      </div>
+
+      <div className="" onClick={setSortAgeDesc}>
+        sort age desc
+      </div>
     </div>
   );
 };
 
-export default Table;
+export default TanstackTable;

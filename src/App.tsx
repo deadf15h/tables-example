@@ -1,10 +1,10 @@
 import "./App.css";
-import Table from "./component/table/table.component";
+import TanstackTable from "./component/tanstack-table/tanstack-table.component";
 
 function App() {
   return (
     <div className="App">
-      <Table />
+      <TanstackTable />
     </div>
   );
 }
