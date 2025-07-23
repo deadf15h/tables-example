@@ -5,8 +5,11 @@ import {
   getSortedRowModel,
 } from "@tanstack/react-table";
 import "./tanstack-table.component.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useHotkeys } from "react-hotkeys-hook";
+import { hotkeys } from "../../hotkeys/hotkeys";
+import { saveFile } from "../../hotkeys/defaultHotkeysHandler";
 
 const data = [
   { firstName: "John", age: 40, secondName: "Doe" },
@@ -31,6 +34,7 @@ const columns = [
 
 const TanstackTable = () => {
   const [sorting, setSorting] = useState<{ id: string; desc: boolean }[]>([]);
+  const [inputText, setInputText] = useState("");
 
   const table = useReactTable({
     columns,
@@ -57,6 +61,21 @@ const TanstackTable = () => {
   const setSortAgeAsc = () => {
     setSorting([{ id: "age", desc: false }]);
   };
+
+  useHotkeys(hotkeys.CtrlS, (e) => saveFile(e));
+
+  useHotkeys(hotkeys.CtrlZ, (e) => setInputText(""));
+
+  useHotkeys(hotkeys.ArrowUp, () => setSortAgeDesc());
+
+  useHotkeys(hotkeys.ArrowDown, () => setSortAgeAsc());
+
+  // for MacOS cmd (meta is cmd)
+  useHotkeys(hotkeys.MetaS, (e) => saveFile(e));
+
+  useEffect(() => {
+    console.log("inputText:", inputText);
+  }, [inputText]);
 
   return (
     <div className="">
@@ -118,6 +137,14 @@ const TanstackTable = () => {
         <div className="" onClick={setSortAgeDesc}>
           sort age desc
         </div>
+
+        <input
+          type="text"
+          placeholder="for keydown"
+          onKeyDown={(e) => console.log(e)}
+          onChange={(e) => setInputText(e.target.value)}
+          value={inputText}
+        />
       </div>
     </div>
   );
