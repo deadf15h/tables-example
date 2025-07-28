@@ -2,6 +2,12 @@ export const hotkeys = {
   CtrlS: "ctrl+s",
   MetaS: "meta+s",
   CtrlZ: "ctrl+z",
+  CtrlA: "ctrl+a",
+  CtrlC: "ctrl+c",
+  CtrlV: "ctrl+v",
+  CtrlY: "ctrl+Y",
+  CtrlF: "ctrl+F",
+  Enter: "enter",
   // works with lowercase and PascalCase
   ArrowUp: "arrowup",
   ArrowDown: "arrowdown",

@@ -73,6 +73,14 @@ const TanstackTable = () => {
   // for MacOS cmd (meta is cmd)
   useHotkeys(hotkeys.MetaS, (e) => saveFile(e));
 
+  // TODO
+  useHotkeys(hotkeys.CtrlA, () => alert("CtrlA"));
+  useHotkeys(hotkeys.CtrlC, () => alert("CtrlC"));
+  useHotkeys(hotkeys.CtrlV, () => alert("CtrlV"));
+  useHotkeys(hotkeys.CtrlY, () => alert("CtrlY"));
+  useHotkeys(hotkeys.CtrlF, () => alert("CtrlF"));
+  useHotkeys(hotkeys.Enter, () => alert("Enter"));
+
   useEffect(() => {
     console.log("inputText:", inputText);
   }, [inputText]);
