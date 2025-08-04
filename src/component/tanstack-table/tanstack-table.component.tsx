@@ -87,7 +87,10 @@ const TanstackTable = () => {
 
   return (
     <div className="">
-      <Link to={"/rc-table"}>RC table</Link>
+      <div className="links-block">
+        <Link to={"/rc-table"}>RC table</Link>
+        <Link to={"/ag-grid-table"}>AG-Grid table</Link>
+      </div>
 
       <div className="table-container">
         <table>

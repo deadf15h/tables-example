@@ -1,44 +1,50 @@
+.links-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .table-container {
-    padding: 20px;
-    overflow-x: auto;
+  padding: 20px;
+  overflow-x: auto;
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
-    border: 1px solid black;
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
 }
 
 th,
 td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid black;
-    position: relative;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid black;
+  position: relative;
 }
 
 th {
-    background-color: grey;
-    font-weight: bold;
+  background-color: grey;
+  font-weight: bold;
 }
 
 .resizer {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 5px;
-    background: rgba(0, 0, 0, 0.1);
-    cursor: col-resize;
-    user-select: none;
-    touch-action: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: col-resize;
+  user-select: none;
+  touch-action: none;
 }
 
 .resizer.isResizing {
-    background: blue;
-    opacity: 1;
+  background: blue;
+  opacity: 1;
 }
 
 tr:hover {
-    background-color: aliceblue;
+  background-color: aliceblue;
 }
