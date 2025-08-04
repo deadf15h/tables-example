@@ -1,5 +1,4 @@
-// React Grid Logic
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   AllCommunityModule,
   ColDef,
@@ -7,7 +6,6 @@ import {
   GridOptions,
   ModuleRegistry,
 } from "ag-grid-community";
-// Core CSS
 import { AgGridReact } from "ag-grid-react";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -30,7 +28,7 @@ const generateRandomData = (itemsCount: number) => {
 };
 
 const AgGridTable = () => {
-  const [rowData, _] = useState(generateRandomData(100));
+  const [rowData] = useState(generateRandomData(100));
 
   const [columnDefs] = useState<(ColDef | ColGroupDef)[]>([
     {
@@ -64,6 +62,11 @@ const AgGridTable = () => {
     {
       field: "color",
       filter: "agSetColumnFilter",
+      width: 500,
+      resizable: false,
+      suppressSizeToFit: false,
+      lockPosition: true,
+      lockVisible: true,
     },
   ]);
 
