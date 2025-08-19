@@ -7,6 +7,8 @@ import TanstackTable from "./component/tanstack-table/tanstack-table.component";
 import RCTable from "./component/rc-table/rc-table.component";
 import AgGridTable from "./component/ag-grid/ag-grid-table.component";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import ReactCalculator from "./component/react-calculator/react-calculator.component";
+import IFrameCalculator from "./component/iframe-calculator/iframe-calculator.component";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -21,6 +23,8 @@ root.render(
         <Route path="/tanstack-table" element={<TanstackTable />} />
         <Route path="/rc-table" element={<RCTable />} />
         <Route path="/ag-grid-table" element={<AgGridTable />} />
+        <Route path="/calculator" element={<ReactCalculator />} />
+        <Route path="/iframe-calculator" element={<IFrameCalculator />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
