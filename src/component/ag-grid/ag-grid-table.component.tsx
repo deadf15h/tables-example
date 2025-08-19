@@ -7,6 +7,7 @@ import {
   ModuleRegistry,
 } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
+import "./ag-grid-table.component.css";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -47,11 +48,23 @@ const AgGridTable = () => {
     },
     {
       headerName: "Price & Year",
+      headerClass: "price-header",
+      // TODO ???
+      // cellClass: "price-cell",
       children: [
         {
-          field: "price",
-          filter: "agNumberColumnFilter",
-          valueFormatter: (params) => `$${params.value.toLocaleString()}`,
+          cellClass: "price-cell",
+          // field: "price",
+          // filter: "agNumberColumnFilter",
+          // valueFormatter: (params) => `$${params.value.toLocaleString()}`,
+          children: [
+            {
+              field: "price",
+              sortable: true,
+              filter: "agNumberColumnFilter",
+              valueFormatter: (params) => `$${params.value.toLocaleString()}`,
+            },
+          ],
         },
         {
           field: "year",
@@ -67,6 +80,14 @@ const AgGridTable = () => {
       suppressSizeToFit: false,
       lockPosition: true,
       lockVisible: true,
+      // cellClass works here
+      // cellClass: "price-cell",
+      cellStyle: (params) => {
+        if (params.value === "Red") {
+          return { color: "white", backgroundColor: "red" };
+        }
+        return null;
+      },
     },
   ]);
 
