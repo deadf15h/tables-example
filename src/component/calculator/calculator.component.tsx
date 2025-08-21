@@ -1,5 +1,5 @@
 import { memo, useCallback, useState } from "react";
-import "./react-calculator.component.css";
+import "./calculator.component.css";
 
 export const evaluateExpression = (expression: string) => {
   if (!expression) return 0;
@@ -19,29 +19,43 @@ export const evaluateExpression = (expression: string) => {
   }
 };
 
-type ButtonProps = {
+type CalculatorButtonProps = {
   value: string;
   onClick: () => void;
 };
 
-type ResultProps = {
+type CalculatorResultInputProps = {
   value: string;
   error: string;
+  setInput: (input: string) => void;
 };
 
-const Button = memo(({ value, onClick }: ButtonProps) => {
-  return <button onClick={onClick}>{value}</button>;
+const CalculatorButton = memo(({ value, onClick }: CalculatorButtonProps) => {
+  return (
+    <button onClick={onClick} className="">
+      {value}
+    </button>
+  );
 });
 
-const Result = ({ value, error }: ResultProps) => (
+const CalculatorResultInput = ({
+  value,
+  error,
+  setInput,
+}: CalculatorResultInputProps) => (
   <div className="display-container">
     {error && <div className="error-message">{error}</div>}
 
-    <input type="text" value={value} readOnly />
+    <input
+      type="text"
+      value={value}
+      className=""
+      onChange={(e) => setInput(e.target.value)}
+    />
   </div>
 );
 
-const ReactCalculator = () => {
+const Calculator = () => {
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
 
@@ -72,6 +86,13 @@ const ReactCalculator = () => {
     setError("");
   }, []);
 
+  // TODO add hotkey Backspace
+  const clearLastSym = () => {
+    setInput(input.slice(0, -1));
+    setError("");
+  };
+
+  // TODO add to const
   const buttons = [
     "7",
     "8",
@@ -85,25 +106,29 @@ const ReactCalculator = () => {
     "2",
     "3",
     "-",
-    "C",
+    "AC",
     "0",
     "=",
     "+",
+    "C",
   ];
 
   return (
     <div className="">
-      <Result value={input} error={error} />
+      <CalculatorResultInput value={input} error={error} setInput={setInput} />
 
+      {/* TODO add hotkey Enter */}
       <div className="button-list">
         {buttons.map((btn) => (
-          <Button
+          <CalculatorButton
             key={btn}
             value={btn}
             onClick={
               btn === "="
                 ? calculate
                 : btn === "C"
+                ? clearLastSym
+                : btn === "AC"
                 ? clearInput
                 : () => handleInput(btn)
             }
@@ -114,4 +139,4 @@ const ReactCalculator = () => {
   );
 };
 
-export default ReactCalculator;
+export default Calculator;
