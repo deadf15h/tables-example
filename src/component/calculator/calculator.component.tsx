@@ -1,12 +1,17 @@
 import { memo, useCallback, useState } from "react";
-import "./calculator.component.css";
 import { useHotkeys } from "react-hotkeys-hook";
-import { hotkeys } from "../../hotkeys/hotkeys";
+import { hotkeys } from "../../const/hotkeys/hotkeys";
+import {
+  calculatorActions,
+  calculatorButtons,
+  calculatorValidationRegExp,
+} from "../../const/const";
+import "./calculator.component.css";
 
 export const evaluateExpression = (expression: string) => {
   if (!expression) return 0;
 
-  const validation = expression.replace(/[^-()\d/*+.]/g, "");
+  const validation = expression.replace(calculatorValidationRegExp, "");
 
   try {
     const result = eval(validation);
@@ -68,11 +73,7 @@ const Calculator = () => {
 
   const calculate = useCallback(() => {
     try {
-      if (
-        !["+", "-", "*", "/", "="].some((substring) =>
-          input.includes(substring)
-        )
-      )
+      if (!calculatorActions.some((substring) => input.includes(substring)))
         return;
 
       const result = evaluateExpression(input);
@@ -93,27 +94,6 @@ const Calculator = () => {
     setError("");
   };
 
-  // TODO add to const
-  const buttons = [
-    "7",
-    "8",
-    "9",
-    "/",
-    "4",
-    "5",
-    "6",
-    "*",
-    "1",
-    "2",
-    "3",
-    "-",
-    "AC",
-    "0",
-    "=",
-    "+",
-    "C",
-  ];
-
   useHotkeys(hotkeys.Backspace, () => clearLastSym());
   useHotkeys(hotkeys.Enter, () => calculate());
 
@@ -122,7 +102,7 @@ const Calculator = () => {
       <CalculatorResultInput value={input} error={error} setInput={setInput} />
 
       <div className="button-list">
-        {buttons.map((btn) => (
+        {calculatorButtons.map((btn) => (
           <CalculatorButton
             key={btn}
             value={btn}

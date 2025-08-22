@@ -8,8 +8,8 @@ import "./tanstack-table.component.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHotkeys } from "react-hotkeys-hook";
-import { hotkeys } from "../../hotkeys/hotkeys";
-import { saveFile } from "../../hotkeys/defaultHotkeysHandler";
+import { hotkeys } from "../../const/hotkeys/hotkeys";
+import { saveFile } from "../../const/hotkeys/defaultHotkeysHandler";
 
 const data = [
   { firstName: "John", age: 40, secondName: "Doe" },
