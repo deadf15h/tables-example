@@ -8,6 +8,7 @@ export const hotkeys = {
   CtrlY: "ctrl+Y",
   CtrlF: "ctrl+F",
   Enter: "enter",
+  Backspace: "backspace",
   // works with lowercase and PascalCase
   ArrowUp: "arrowup",
   ArrowDown: "arrowdown",

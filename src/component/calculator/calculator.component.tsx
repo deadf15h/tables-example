@@ -1,5 +1,7 @@
 import { memo, useCallback, useState } from "react";
 import "./calculator.component.css";
+import { useHotkeys } from "react-hotkeys-hook";
+import { hotkeys } from "../../hotkeys/hotkeys";
 
 export const evaluateExpression = (expression: string) => {
   if (!expression) return 0;
@@ -86,7 +88,6 @@ const Calculator = () => {
     setError("");
   }, []);
 
-  // TODO add hotkey Backspace
   const clearLastSym = () => {
     setInput(input.slice(0, -1));
     setError("");
@@ -113,11 +114,13 @@ const Calculator = () => {
     "C",
   ];
 
+  useHotkeys(hotkeys.Backspace, () => clearLastSym());
+  useHotkeys(hotkeys.Enter, () => calculate());
+
   return (
     <div className="">
       <CalculatorResultInput value={input} error={error} setInput={setInput} />
 
-      {/* TODO add hotkey Enter */}
       <div className="button-list">
         {buttons.map((btn) => (
           <CalculatorButton
