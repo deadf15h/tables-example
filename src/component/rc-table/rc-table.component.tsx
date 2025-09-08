@@ -1,5 +1,6 @@
 import Table from "rc-table";
 import { Link } from "react-router-dom";
+import { getPath, paths } from "../../const/paths";
 
 const columns = [
   {
@@ -33,11 +34,10 @@ const data = [
   { name: "Rose", age: 36, address: "some where", key: "2" },
 ];
 
-// TODO
 const RCTable = () => {
   return (
     <div className="">
-      <Link to={"/tanstack-table"}>Tanstack table</Link>
+      <Link to={getPath(paths.TanstackTablePath)}>Tanstack table</Link>
 
       <Table columns={columns} data={data} />
     </div>

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useHotkeys } from "react-hotkeys-hook";
 import { hotkeys } from "../../const/hotkeys/hotkeys";
 import { saveFile } from "../../const/hotkeys/defaultHotkeysHandler";
+import { getPath, paths } from "../../const/paths";
 
 const data = [
   { firstName: "John", age: 40, secondName: "Doe" },
@@ -88,10 +89,10 @@ const TanstackTable = () => {
   return (
     <div className="">
       <div className="links-block">
-        <Link to={"/rc-table"}>RC table</Link>
-        <Link to={"/ag-grid-table"}>AG-Grid table</Link>
-        <Link to={"/calculator"}>Calculator</Link>
-        <Link to={"/iframe-calculator"}>Iframe-calculator</Link>
+        <Link to={getPath(paths.RCTablePath)}>RC table</Link>
+        <Link to={getPath(paths.AGGridTablePath)}>AG-Grid table</Link>
+        <Link to={getPath(paths.CalculatorPath)}>Calculator</Link>
+        <Link to={getPath(paths.IFrameCalculatorPath)}>IFrame-calculator</Link>
       </div>
 
       <div className="table-container">
