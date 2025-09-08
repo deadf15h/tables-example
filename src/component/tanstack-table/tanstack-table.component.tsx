@@ -90,6 +90,8 @@ const TanstackTable = () => {
       <div className="links-block">
         <Link to={"/rc-table"}>RC table</Link>
         <Link to={"/ag-grid-table"}>AG-Grid table</Link>
+        <Link to={"/calculator"}>Calculator</Link>
+        <Link to={"/iframe-calculator"}>Iframe-calculator</Link>
       </div>
 
       <div className="table-container">
