@@ -7,6 +7,8 @@ export const hotkeys = {
   CtrlV: "ctrl+v",
   CtrlY: "ctrl+Y",
   CtrlF: "ctrl+F",
+  MetaP: "meta+p",
+  CtrlP: "ctrl+p",
   Enter: "enter",
   Backspace: "backspace",
   // works with lowercase and PascalCase

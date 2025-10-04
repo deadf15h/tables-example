@@ -11,6 +11,7 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { hotkeys } from "../../const/hotkeys/hotkeys";
 import { saveFile } from "../../const/hotkeys/defaultHotkeysHandler";
 import { getPath, paths } from "../../const/paths";
+import { useDisablePrint } from "../../hooks/useDisablePrint";
 
 const data = [
   { firstName: "John", age: 40, secondName: "Doe" },
@@ -36,6 +37,7 @@ const columns = [
 const TanstackTable = () => {
   const [sorting, setSorting] = useState<{ id: string; desc: boolean }[]>([]);
   const [inputText, setInputText] = useState("");
+  useDisablePrint();
 
   const table = useReactTable({
     columns,
